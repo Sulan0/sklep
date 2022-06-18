@@ -21,11 +21,22 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->surname }}</td>
                     <td>{{ $user->phone_number }}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-danger btm-sm delete">
+                            X
+                        </button>
+                    </td>
             </tr>
         @endforeach
         </tbody>
     </table>
         {{ $users->links() }}
     </div>
+@endsection
+@section('javascript')
+    $(function() {
+        $('.delete').click(function() {
+            alert('Click!!!');
+        });
+    });
 @endsection
