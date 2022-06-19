@@ -22,7 +22,7 @@
                     <td>{{ $user->surname }}</td>
                     <td>{{ $user->phone_number }}</td>
                     <td>
-                        <button class="btn btn-danger btm-sm delete">
+                        <button class="btn btn-danger btm-sm delete" data-id="{{ $user->id }}">
                             X
                         </button>
                     </td>
@@ -36,7 +36,17 @@
 @section('javascript')
     $(function() {
         $('.delete').click(function() {
-            alert('Click!!!');
+            $.ajax({
+                method: "DELETE",
+                url: "http://sklep.test/users/" + $(this).data("id")
+               // data: { id:  &(this).data("id") }
+            })
+            .done(function(response) {
+                window.location.reload();
+            })
+            .fail(function(response) {
+                alert("ERROR");
+            });
         });
     });
 @endsection
