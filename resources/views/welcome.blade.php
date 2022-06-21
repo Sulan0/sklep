@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="card-body text-center">
                                         <h4 class="card-title">
-{{--                                            <a href="product.html" class=" font-weight-bold text-dark text-uppercase small">--}}
+{{--                                            <a href="product.html" class=" font-weight-bold text-dark text-uppercase small">--}}{{----}}
                                                 {{ $product->name }}
 {{--                                            </a>--}}
                                         </h4>
