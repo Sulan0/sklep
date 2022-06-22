@@ -22,10 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::resource('products', ProductController::class);
+    Route::middleware(['can:isMod'])->group(function() {
+        Route::resource('products', ProductController::class);
+    });
 
-    Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('auth');
+
+    Route::get('/users/list', [UserController::class, 'index'])->middleware('can:isAdmin');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('can:isAdmin');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
