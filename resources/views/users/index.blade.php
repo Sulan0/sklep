@@ -28,7 +28,17 @@
                     <td>{{ $user->surname }}</td>
                     <td>{{ $user->phone_number }}</td>
                     <td>
-                        <button class="btn btn-danger btm-sm delete" data-id="{{ $user->id }}">
+                        <a href="{{ route('users.show', $user->id) }}">
+                            <button class="btn btn-primary btn-sm">
+                                P
+                            </button>
+                        </a>
+                        <a href="{{ route('users.edit', $user->id) }}">
+                            <button class="btn btn-success btn-sm">
+                                E
+                            </button>
+                        </a>
+                        <button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}">
                             X
                         </button>
                     </td>

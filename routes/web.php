@@ -30,6 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::get('/users/list', [UserController::class, 'index'])->middleware('can:isAdmin');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('can:isAdmin');
+    Route::resource('users', UserController::class)->only([
+        'index', 'show', 'edit', 'update', 'destroy'
+    ]);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
