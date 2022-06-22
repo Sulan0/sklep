@@ -8,6 +8,7 @@
                     <div class="card-header">{{ __('shop.product.show_title') }}</div>
 
                     <div class="card-body">
+                        xd in product?
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.name') }}</label>
 

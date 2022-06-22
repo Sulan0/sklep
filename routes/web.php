@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HelloWorldController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -31,6 +32,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('can:isAdmin');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+Route::delete('/cart/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 
 //Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
 //Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('auth');

@@ -5,9 +5,34 @@ $(function() {
         getProducts($(this).text());
     });
 
-    $('a#filter-button').click(function (event) {
+    $('a#filter-button').click(function(event) {
         event.preventDefault();
         getProducts($('a.products-actual-count').first().text());
+    });
+
+    $('button.add-cart-button').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: addToCart + $(this).data('id')
+        })
+            .done(function () {
+                Swal.fire({
+                    title: 'Brawo!',
+                    text: 'Produkt dodany do koszyka!',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: '<i class="fas fa-cart-plus"></i> Przejdź do koszyka',
+                    cancelButtonText: '<i class="fas fa-shopping-bag"></i> Kontynuuj zakupy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = listCart;
+                    }
+                })
+            })
+            .fail(function () {
+                Swal.fire('Oops...', 'Wystąpił błąd', 'error');
+            });
     });
 
     function getProducts(paginate) {
