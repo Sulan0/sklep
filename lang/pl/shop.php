@@ -23,6 +23,9 @@ return [
             'delete' => [
                 'success' => 'Użytkownik usunięty!'
             ],
+            'update' => [
+                'success' => 'Produkt zaktualizowany!'
+                ]
         ],
     ],
     'product' => [

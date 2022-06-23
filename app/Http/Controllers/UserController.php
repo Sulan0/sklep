@@ -84,15 +84,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $userValidated = $request->validated()['user'];
-        if ($user->hasAddress()) {
-            $address = $user->address;
-            $address->fill($addressValidated);
-        } else {
-            $address = new Address($addressValidated);
-        }
-        $user->address()->save($address);
-        return redirect(route('users.index'))->with('status', __('shop.product.status.update.success'));
+        $user->fill($request->validated());
+        $user->save();
+        return redirect(route('users.index'))->with('status', __('shop.user.status.update.success'));
     }
 
     /**
